@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sosmed Intro</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --light-bg: linear-gradient(135deg, #ffb6c1, #dda0dd, #b0e0e6);
+      --dark-bg: linear-gradient(135deg, #1a1a2e, #2d2d44);
+      --text-light: #fff;
+      --text-dark: #e5e5e5;
+    }
+
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--light-bg);
+      background-size: 400% 400%;
+      animation: gradient 10s ease infinite;
+      color: var(--text-light);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      transition: background 1s ease, color 1s ease;
+    }
+
+    body.dark {
+      background: var(--dark-bg);
+      color: var(--text-dark);
+    }
+
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .intro {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 99;
+      animation: fadeIn 1.2s ease-out;
+      text-align: center;
+    }
+
+    .intro img {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      border: 3px solid white;
+      margin-bottom: 20px;
+      animation: popIn 0.8s ease;
+    }
+
+    .intro h1 {
+      font-size: 2.4em;
+      color: #fff;
+      animation: slideDown 1s ease;
+    }
+
+    .intro-text {
+      font-size: 16px;
+      color: #ffdef0;
+      margin-top: 10px;
+      margin-bottom: 25px;
+      max-width: 300px;
+      line-height: 1.4;
+      animation: fadeIn 1.5s ease;
+    }
+
+    .intro button {
+      padding: 10px 26px;
+      background: #fff;
+      color: #e91e63;
+      border: none;
+      border-radius: 30px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .intro button:hover {
+      background: #ffe3f2;
+    }
+
+    .main {
+      opacity: 0;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      transition: opacity 0.8s ease;
+    }
+
+    .main.show {
+      display: flex;
+      opacity: 1;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      backdrop-filter: blur(8px);
+      padding: 30px;
+      max-width: 480px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      text-align: left;
+    }
+
+    .card img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid white;
+    }
+
+    .text h2 {
+      font-size: 22px;
+      margin: 0;
+      text-transform: lowercase;
+    }
+
+    .text p {
+      font-size: 14px;
+      margin-top: 4px;
+      min-height: 80px;
+    }
+
+    .footer {
+      margin-top: 20px;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .nav-buttons {
+      margin-top: 15px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .nav-buttons button {
+      background: #fff;
+      color: #e91e63;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .nav-buttons button:hover {
+      background: #ffe3f2;
+    }
+
+    .typing::after {
+      content: "|";
+      animation: blink 0.8s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0.5); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideDown {
+      from { transform: translateY(-20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Intro -->
+  <div class="intro" id="intro">
+    <img src="https://files.catbox.moe/0kjnfp.jpg" alt="Foto Profil" />
+    <h1>@hannn</h1>
+    <p class="intro-text">Sebuah cerita... dari hati yang masih menunggu🩷</p>
+    <button onclick="showMain()">Buka Cerita</button>
+  </div>
+
+  <!-- Main -->
+  <div class="main" id="main">
+    <div class="card">
+      <img src="https://files.catbox.moe/0kjnfp.jpg" alt="Foto Hannn" />
+      <div class="text">
+        <h2>@hannn</h2>
+        <p id="typed" class="typing"></p>
+      </div>
+    </div>
+    <div class="nav-buttons">
+      <button onclick="previousPage()">&lt;</button>
+      <button onclick="nextPage()">&gt;</button>
+    </div>
+    <div class="footer">© 2025 Dibuat dengan 💗 oleh hannn</div>
+  </div>
+
+  <audio id="bgm" autoplay loop muted>
+    <source src="https://files.catbox.moe/a7hza7.mp3" type="audio/mpeg" />
+    Browser tidak mendukung audio.
+  </audio>
+
+  <script>
+    const texts = [
+      "kalo emang kamu gabisa balik lagi sama aku, kenapa perasaan ini terus terang gabisa hilang? malahan sekarang perasaan aku makin melekat banget sama kamu",
+      "harapan aku juga buat kamu balik sama aku ga perna berubah sama sekali aku masih nungguin kamu walaupun lama kapanpun itu aku tunggu",
+      "aku gamau nyari pengganti dirimu aku tulus mencintai dirimu sampai kapan pun aku menunggu kamu",
+      "love u anak cantik selalu mencintaimu🩷🩷"
+    ];
+
+    let currentPage = 0;
+    let i = 0;
+    const speed = 40;
+
+    function ketik(teks, callback) {
+      if (i < teks.length) {
+        document.getElementById("typed").innerHTML += teks.charAt(i);
+        i++;
+        setTimeout(() => ketik(teks, callback), speed);
+      } else {
+        document.getElementById("typed").classList.remove("typing");
+        if (callback) callback();
+      }
+    }
+
+    function showPage(index) {
+      currentPage = index;
+      i = 0;
+      document.getElementById("typed").classList.add("typing");
+      document.getElementById("typed").innerHTML = "";
+      ketik(texts[currentPage]);
+    }
+
+    function nextPage() {
+      if (currentPage < texts.length - 1) {
+        showPage(currentPage + 1);
+      }
+    }
+
+    function previousPage() {
+      if (currentPage === 0) {
+        document.getElementById("main").classList.remove("show");
+        document.getElementById("intro").style.display = "flex";
+        document.getElementById("intro").style.opacity = 1;
+      } else {
+        showPage(currentPage - 1);
+      }
+    }
+
+    function showMain() {
+      document.getElementById("intro").style.opacity = 0;
+      setTimeout(() => {
+        document.getElementById("intro").style.display = "none";
+        document.getElementById("main").classList.add("show");
+        showPage(0);
+
+        // Aktifkan audio setelah interaksi
+        const audio = document.getElementById("bgm");
+        audio.muted = false;
+        audio.play().catch(() => {});
+      }, 500);
+    }
+
+    // Auto skip intro setelah 5 detik
+    setTimeout(() => {
+      if (document.getElementById("intro").style.display !== "none") {
+        showMain();
+      }
+    }, 5000);
+
+    // Dark mode otomatis malam
+    const hour = new Date().getHours();
+    if (hour >= 18 || hour < 6) {
+      document.body.classList.add("dark");
+    }
+  </script>
+
+</body>
+</html>
